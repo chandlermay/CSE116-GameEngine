@@ -44,11 +44,28 @@ public class PhysicsEngine {
 
     public void updateObject(DynamicGameObject dynamicObject, double dt){
         // TODO: update location based on velocity
+        double location_x = dynamicObject.getLocation().getX();
+        double location_y = dynamicObject.getLocation().getY();
+        double velocity_x = dynamicObject.getVelocity().getX();
+        double velocity_y = dynamicObject.getVelocity().getY();
+        double y_change = dt * velocity_y;
+        double x_change = dt * velocity_x;
+        dynamicObject.getLocation().setX(location_x + x_change);
+        dynamicObject.getLocation().setY(location_y+y_change);
     }
 
     public boolean detectCollision(Hitbox hb1, Hitbox hb2){
-        return false;
         // TODO: return true if the 2 hitboxes overlap; false otherwise
+        double locx1 = hb1.getLocation().getX();
+        double locy1 = hb1.getLocation().getY();
+        double dimx1 = hb1.getDimensions().getX();
+        
+        if( hb1.getLocation().equals(hb2.getLocation())) {
+
+        }
+        else{
+            return false;
+        }
     }
 
 }
