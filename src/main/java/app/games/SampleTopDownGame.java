@@ -2,6 +2,7 @@ package app.games;
 
 import app.gameengine.Game;
 import app.gameengine.Level;
+import app.gameengine.model.datastructures.LinkedListNode;
 import app.gameengine.model.physics.Vector2D;
 import app.games.commonobjects.Goal;
 import app.games.topdownobjects.Enemy;
@@ -14,6 +15,11 @@ public class SampleTopDownGame extends Game {
     public SampleTopDownGame() {
         this.init();
     }
+    private LinkedListNode Level;
+    public  LinkedListNode getLevelList(){
+        return Level;
+    }
+
 
     public void init() {
         this.loadLevel(levelZero());

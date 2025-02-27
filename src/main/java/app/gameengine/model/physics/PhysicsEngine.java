@@ -2,9 +2,8 @@ package app.gameengine.model.physics;
 
 import app.gameengine.model.gameobjects.DynamicGameObject;
 import app.gameengine.Level;
+import app.gameengine.model.gameobjects.GameObject;
 import app.gameengine.model.gameobjects.StaticGameObject;
-
-import java.util.ArrayList;
 
 public class PhysicsEngine {
 
@@ -56,16 +55,19 @@ public class PhysicsEngine {
 
     public boolean detectCollision(Hitbox hb1, Hitbox hb2){
         // TODO: return true if the 2 hitboxes overlap; false otherwise
-        double locx1 = hb1.getLocation().getX();
-        double locy1 = hb1.getLocation().getY();
-        double dimx1 = hb1.getDimensions().getX();
-        
-        if( hb1.getLocation().equals(hb2.getLocation())) {
-
-        }
-        else{
-            return false;
-        }
+        double leftx1 = hb1.getLocation().getX();
+        double topy1 = hb1.getLocation().getY();
+        double rightx1 = leftx1 + hb1.getDimensions().getX();
+        double bottomy1 = topy1 + hb1.getDimensions().getY();
+        double leftx2 = hb2.getLocation().getX();
+        double topy2 = hb2.getLocation().getY();
+        double rightx2 = leftx2+ hb2.getDimensions().getX();
+        double bottomy2 = topy2 + hb2.getDimensions().getY();
+        boolean left = (leftx1 <= leftx2) && (leftx2 <= rightx1);
+        boolean right = (leftx2 <= leftx1) && (leftx1 <= rightx2);
+        boolean top = (bottomy2 >= topy1) && (topy2 <= bottomy1);
+        boolean bottom = (topy1 >=topy2) && (topy1 <bottomy2);
+        return (left || right) && (top || bottom);
     }
 
 }
